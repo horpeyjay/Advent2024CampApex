@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Location__c</fullName>
+    <label>Location</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Main_Square</fullName>
+                <default>false</default>
+                <label>Main Square</label>
+            </value>
+            <value>
+                <fullName>Treat_Lane</fullName>
+                <default>false</default>
+                <label>Treat Lane</label>
+            </value>
+            <value>
+                <fullName>Sweet_Corner</fullName>
+                <default>false</default>
+                <label>Sweet Corner</label>
+            </value>
+            <value>
+                <fullName>Festival Row</fullName>
+                <default>false</default>
+                <label>Festival_Row</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

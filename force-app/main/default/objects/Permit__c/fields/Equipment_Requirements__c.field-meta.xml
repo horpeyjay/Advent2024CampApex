@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Equipment_Requirements__c</fullName>
+    <label>Equipment Requirements</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Standard (Basic Booth Setup)</fullName>
+                <default>false</default>
+                <label>Standard (Basic Booth Setup)</label>
+            </value>
+            <value>
+                <fullName>Premium (Enhanced Power/Water)</fullName>
+                <default>false</default>
+                <label>Premium (Enhanced Power/Water)</label>
+            </value>
+            <value>
+                <fullName>Specialty (Custom Requirements)</fullName>
+                <default>false</default>
+                <label>Specialty (Custom Requirements)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#2B7412</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Camp Apex - Advent of Salesforce Decelopment</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Winter Wonderland Festival</label>
+    <navType>Standard</navType>
+    <tabs>Vendor__c</tabs>
+    <tabs>Permit__c</tabs>
+    <tabs>Booth__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Winter_Wonderland_Festival_UtilityBar</utilityBar>
+</CustomApplication>

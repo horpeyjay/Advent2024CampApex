@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Safety_Rating__c</fullName>
+    <description>To track the safety level of a booth&apos;s setup and operations</description>
+    <inlineHelpText>To track the safety level of a booth&apos;s setup and operations</inlineHelpText>
+    <label>Safety Rating</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1 = Critical issues (needs immediate attention)</fullName>
+                <default>false</default>
+                <label>1 = Critical issues (needs immediate attention)</label>
+            </value>
+            <value>
+                <fullName>2 = Major concerns</fullName>
+                <default>false</default>
+                <label>2 = Major concerns</label>
+            </value>
+            <value>
+                <fullName>3 = Minor issues</fullName>
+                <default>false</default>
+                <label>3 = Minor issues</label>
+            </value>
+            <value>
+                <fullName>4 = Good standing</fullName>
+                <default>false</default>
+                <label>4 = Good standing</label>
+            </value>
+            <value>
+                <fullName>5 = Excellent/Perfect safety record</fullName>
+                <default>false</default>
+                <label>5 = Excellent/Perfect safety record</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

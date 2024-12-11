@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inspection_Frequency__c</fullName>
+    <label>Inspection Frequency</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Every 2 hours</fullName>
+                <default>false</default>
+                <label>Every 2 hours</label>
+            </value>
+            <value>
+                <fullName>Every 4 hours</fullName>
+                <default>false</default>
+                <label>Every 4 hours</label>
+            </value>
+            <value>
+                <fullName>Every 6 hours</fullName>
+                <default>false</default>
+                <label>Every 6 hours</label>
+            </value>
+            <value>
+                <fullName>Daily</fullName>
+                <default>false</default>
+                <label>Daily</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
