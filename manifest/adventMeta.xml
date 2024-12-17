@@ -7,7 +7,7 @@
 	<types>
 		<members>*</members>
 		<name>ApexTrigger</name>
-	</types>-->
+	</types>
 	<types>
 		<members>Booth__c</members>
 		<members>Permit__c</members>
@@ -21,6 +21,10 @@
 	<types>
 		<members>permit_Booth_after_flow</members>
 		<name>Flow</name>
+	</types>-->
+	<types>
+		<members>Booth__c.booth_Location</members>
+		<name>ValidationRule</name>
 	</types>
 	<version>62.0</version>
 </Package>

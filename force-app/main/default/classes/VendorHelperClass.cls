@@ -16,4 +16,23 @@ public with sharing class VendorHelperClass {
             }
         }
     }
+
+    public List<Permit__c> getPermitsNeedingReview() {
+        // Your SOQL query here
+        /**
+         * Your query should:
+
+Find permits that match either of these conditions:
+Permits that have been approved but don't have a review date recorded
+Permits with a review date in the past that are either new, under review, or missing a status
+Order the results by when they were created, with the newest first
+Return all fields
+         */
+        List<Permit__c> newPermitReview = [Select Id, Name, Booth_Type__c, Equipment_Requirements__c, Festival_Booth__c, 
+            Review_Date__c, Risk_Level__c, Space_Required__c, Special_Requirements__c, Status__c, Vendor__c 
+            From Permit__c 
+            Where (Status__c = 'Approved' And Review_Date__c = null) or (Status__c In ('New', 'Under Review') and Review_Date__c < :Date.Today()) Order by CreatedDate DESC];
+
+            return newPermitReview;
+    }
 }

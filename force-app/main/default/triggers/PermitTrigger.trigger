@@ -4,7 +4,7 @@ trigger PermitTrigger on Permit__c (before insert, after insert, after update) {
         if(trigger.isInsert){
             PermitHelperClass.applicationPending(trigger.new);
         }
-    }*/
+    }
 
     if(trigger.isAfter){
         if(trigger.isInsert){
@@ -14,5 +14,5 @@ trigger PermitTrigger on Permit__c (before insert, after insert, after update) {
         if(trigger.isUpdate){
             PermitHelperClass.boothCreationOnApproval(trigger.new, trigger.oldMap);
         }
-    }
+    }*/
 }

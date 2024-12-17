@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>booth_Location</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+    
+    AND(
+        ISPICKVAL(Vendor__r.Type__c, &apos;Baker&apos;),
+        NOT(ISPICKVAL(Location__c, &apos;Main Square&apos;) || ISPICKVAL(Location__c, &apos;Treat Lane&apos;))
+    ),
+    
+    AND(
+        ISPICKVAL(Vendor__r.Type__c, &apos;Candy Maker&apos;),
+        NOT(ISPICKVAL(Location__c, &apos;Sweet Corner&apos;))
+    ),
+    
+    AND(
+        ISPICKVAL(Vendor__r.Type__c, &apos;Game Master&apos;),
+        NOT(ISPICKVAL(Location__c, &apos;Treat Lane&apos;) || ISPICKVAL(Location__c, &apos;Main Square&apos;))
+    )
+)</errorConditionFormula>
+    <errorDisplayField>Location__c</errorDisplayField>
+    <errorMessage>The Booth may not be placed in this location.</errorMessage>
+</ValidationRule>

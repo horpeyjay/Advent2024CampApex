@@ -45,5 +45,6 @@
 		<members>*</members>
 		<name>StaticResource</name>
 	</types>
+	
 	<version>62.0</version>
 </Package>
