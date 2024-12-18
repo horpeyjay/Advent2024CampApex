@@ -17,22 +17,27 @@ public with sharing class VendorHelperClass {
         }
     }
 
-    public List<Permit__c> getPermitsNeedingReview() {
-        // Your SOQL query here
-        /**
-         * Your query should:
+    /*Do not change the name of the class or the method signature.*/
+    public Map<String, List<Booth__c>> getBoothsBySafetyRating() {
+        // Your SOQL & Apex here
 
-Find permits that match either of these conditions:
-Permits that have been approved but don't have a review date recorded
-Permits with a review date in the past that are either new, under review, or missing a status
-Order the results by when they were created, with the newest first
-Return all fields
-         */
-        List<Permit__c> newPermitReview = [Select Id, Name, Booth_Type__c, Equipment_Requirements__c, Festival_Booth__c, 
-            Review_Date__c, Risk_Level__c, Space_Required__c, Special_Requirements__c, Status__c, Vendor__c 
-            From Permit__c 
-            Where (Status__c = 'Approved' And Review_Date__c = null) or (Status__c In ('New', 'Under Review') and Review_Date__c < :Date.Today()) Order by CreatedDate DESC];
+        List<Booth__c> boothList = [SELECT Id, Name, Daily_Capacity__c, Inspection_Frequency__c, 
+                                    Location__c, Safety_Rating__c, Setup_Date__c, Status__c, Vendor__c 
+                                    FROM Booth__c order by CreatedDate];
 
-            return newPermitReview;
+        Map<String, List<Booth__c>> mapBoothsByRating = new Map<String, List<Booth__c>>();
+
+        
+        for (Booth__c booth : boothList) {
+            String key = (booth.Safety_Rating__c == null) ? 'Unrated' : String.valueOf(booth.Safety_Rating__c);
+
+            
+            if (!mapBoothsByRating.containsKey(key)) {
+                mapBoothsByRating.put(key, new List<Booth__c>());
+            }
+            mapBoothsByRating.get(key).add(booth);
+        }
+
+        return mapBoothsByRating;
     }
 }
