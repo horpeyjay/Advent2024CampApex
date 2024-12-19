@@ -18,26 +18,41 @@ public with sharing class VendorHelperClass {
     }
 
     /*Do not change the name of the class or the method signature.*/
-    public Map<String, List<Booth__c>> getBoothsBySafetyRating() {
-        // Your SOQL & Apex here
-
-        List<Booth__c> boothList = [SELECT Id, Name, Daily_Capacity__c, Inspection_Frequency__c, 
-                                    Location__c, Safety_Rating__c, Setup_Date__c, Status__c, Vendor__c 
-                                    FROM Booth__c order by CreatedDate];
-
-        Map<String, List<Booth__c>> mapBoothsByRating = new Map<String, List<Booth__c>>();
-
-        
-        for (Booth__c booth : boothList) {
-            String key = (booth.Safety_Rating__c == null) ? 'Unrated' : String.valueOf(booth.Safety_Rating__c);
-
-            
-            if (!mapBoothsByRating.containsKey(key)) {
-                mapBoothsByRating.put(key, new List<Booth__c>());
-            }
-            mapBoothsByRating.get(key).add(booth);
+    public String fixAddressList(String input) {
+        if(String.isBlank(input)){
+          return '';
         }
-
-        return mapBoothsByRating;
-    }
+        List<Vendor__c> vendorList = [Select Name, Mailing_Street__c From Vendor__c];
+        Map<String, String> nameToAddressMap = new Map<String, String>();
+        For(Vendor__c vend: vendorList){
+          nameToAddressMap.put(vend.Name, vend.Mailing_Street__c);
+        }
+    
+        List<String> inputParameter = input.split('\n');
+        List<String> names = new List<String>();
+        List<String> addresses = new List<String>();
+        for(integer i = 0; i < inputParameter.size(); i++){
+          if(Math.mod(i, 2) == 0){
+            names.add(inputParameter[i]);
+          }else{
+            addresses.add(inputParameter[i]);
+          }
+        }
+        Map<String, String> errorMap = new Map<String, String>();
+        if(names.size() == addresses.size()){
+          for(integer j = 0; j < names.size(); j++){
+            errorMap.put(names[j], addresses[j]);
+          }
+        }
+        String outputString;
+        for(String s : errorMap.keySet()){
+          for(String name : nameToAddressMap.keySet()){
+            if(name.contains(s)){
+              outputString += name + ('\n');
+              outputString += nameToAddressMap.get(name) + ('\n');
+            }
+          }
+        }
+        return outputString;
+      }
 }
