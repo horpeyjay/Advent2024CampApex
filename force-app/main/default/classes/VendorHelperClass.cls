@@ -54,5 +54,78 @@ public with sharing class VendorHelperClass {
           }
         }
         return outputString;
+    }
+
+    public Boolean canBalanceForest(List<Integer> treeHeights) {
+      // Constraint check
+      if (treeHeights.size() < 2 || treeHeights.size() > 1000) {
+        return false;
       }
+      List<Integer> violation = new List<Integer>();
+      for(Integer i = 0; i < treeHeights.size() - 1; i++){
+        if(treeHeights[i] < 1 || treeHeights[i] > 1000){
+          return false;
+        }
+        if(treeHeights[i] > treeHeights[i+1]){
+          violation.add(i);
+        }
+      }
+
+      if(violation.isEmpty()){
+        return true;
+      }
+      if(violation.size() > 2){
+        return false;
+      }
+      return true;
+    }
+
+      public List<String> getTopFlavors(List<String> flavors, Integer k) {
+          // Step 1: Count the frequency of each flavor
+          Map<String, Integer> flavorCount = new Map<String, Integer>();
+          for (String s : flavors) {
+              if (!flavorCount.containsKey(s)) {
+                  flavorCount.put(s, 1);
+              } else {
+                  flavorCount.put(s, flavorCount.get(s) + 1);
+              }
+          }
+  
+          // Step 2: Convert map keys to a list
+          List<String> sortedFlavors = new List<String>(flavorCount.keySet());
+  
+          // Step 3: Sort using custom sorting logic
+          sortedFlavors.sort(new CustomComparator(flavorCount));
+  
+          // Step 4: Extract the top K flavors
+          List<String> topFlavors = new List<String>();
+          for (Integer i = 0; i < k && i < sortedFlavors.size(); i++) {
+              topFlavors.add(sortedFlavors[i]);
+          }
+  
+          return topFlavors;
+      }
+  
+      // Custom comparator class
+      public class CustomComparator implements Comparator<String> {
+          private Map<String, Integer> flavorCount;
+  
+          // Constructor to initialize the frequency map
+          public CustomComparator(Map<String, Integer> flavorCount) {
+              this.flavorCount = flavorCount;
+          }
+  
+          public Integer compare(String a, String b) {
+              Integer freqA = flavorCount.get(a);
+              Integer freqB = flavorCount.get(b);
+  
+              if (freqA == freqB) {
+                  // Sort alphabetically if frequencies are equal
+                  return a.compareTo(b);
+              }
+              // Sort by frequency in descending order
+              return freqB - freqA;
+          }
+      }
+  
 }
