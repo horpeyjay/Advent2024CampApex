@@ -127,5 +127,28 @@ public with sharing class VendorHelperClass {
               return freqB - freqA;
           }
       }
+
+      public Integer minimumSteamAdjustments(List<Integer> powerLevels) {
+        Integer result = 0;
+        if(powerLevels.size() < 3){
+            return -1;
+        }
+        for(Integer i = 1; i < powerLevels.size() - 1; i++){
+            Integer currentNum = powerLevels[i];
+            Integer nextNum = powerLevels[i + 1];
+            Integer prevNum = powerLevels[i - 1];
+        }
+
+        if(Math.abs(currentNum - prevNum) > 1 || Math.abs(currentNum - nextNum) > 1){
+            return -1;
+        }
+
+        if(currentNum != (prevNum + nextNum)/2){
+            result += Math.abs(currentNum - (prevNum + nextNum)/2);
+            powerLevels[i] = (prevNum + nextNum) /2;
+        }
+
+        return result;
+    }
   
 }
