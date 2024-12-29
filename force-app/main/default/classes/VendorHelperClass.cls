@@ -128,27 +128,42 @@ public with sharing class VendorHelperClass {
           }
       }
 
-      public Integer minimumSteamAdjustments(List<Integer> powerLevels) {
-        Integer result = 0;
-        if(powerLevels.size() < 3){
-            return -1;
-        }
-        for(Integer i = 1; i < powerLevels.size() - 1; i++){
-            Integer currentNum = powerLevels[i];
-            Integer nextNum = powerLevels[i + 1];
-            Integer prevNum = powerLevels[i - 1];
-        }
-
-        if(Math.abs(currentNum - prevNum) > 1 || Math.abs(currentNum - nextNum) > 1){
-            return -1;
-        }
-
-        if(currentNum != (prevNum + nextNum)/2){
-            result += Math.abs(currentNum - (prevNum + nextNum)/2);
-            powerLevels[i] = (prevNum + nextNum) /2;
-        }
-
-        return result;
-    }
+    public Integer findPairs(List<Integer> preferences, Integer target) {
+      Integer count = 0;
+      Map<Integer, Integer> frequencyMap = new Map<Integer, Integer>();
+  
+      // Build a frequency map of the numbers
+      for (Integer num : preferences) {
+          if (!frequencyMap.containsKey(num)) {
+              frequencyMap.put(num, 0);
+          }
+          frequencyMap.put(num, frequencyMap.get(num) + 1);
+      }
+  
+      // Iterate through the map to count pairs
+      for (Integer key : frequencyMap.keySet()) {
+          Integer complement = target - key;
+  
+          if (frequencyMap.get(key) > 0) {
+              if (key == complement) {
+                  // Handle pairs within the same number
+                  Integer pairs = frequencyMap.get(key) / 2;
+                  count += pairs;
+                  frequencyMap.put(key, 0); // Mark as processed
+              } else if (frequencyMap.containsKey(complement) && frequencyMap.get(complement) > 0) {
+                  // Count pairs formed by key and complement
+                  Integer pairs = Math.min(frequencyMap.get(key), frequencyMap.get(complement));
+                  count += pairs;
+  
+                  // Decrement frequencies for the counted pairs
+                  frequencyMap.put(key, frequencyMap.get(key) - pairs);
+                  frequencyMap.put(complement, frequencyMap.get(complement) - pairs);
+              }
+          }
+      }
+  
+      return count;
+  }
+  
   
 }
